@@ -6,11 +6,11 @@
 <title>🎧 French 5000 — Écoute v2</title>
 <style>
   :root {
-    --bg: #f0f9ff; --surface: #ffffff; --surface2: #e0f2fe; --border: #bae6fd;
-    --text: #0c4a6e; --text2: #0369a1; --accent: #0284c7; --accent2: #38bdf8;
+    --bg: #e0f7ff; --surface: #ffffff; --surface2: #b3eeff; --border: #7dd8f8;
+    --text: #024c73; --text2: #0282c4; --accent: #00aaee; --accent2: #5dd8ff;
     --green: #16a34a; --red: #dc2626;
-    --card-front: #ffffff; --card-back: #f0f9ff;
-    --shadow: 0 8px 32px rgba(2,132,199,0.12); --radius: 16px; --radius-sm: 10px;
+    --card-front: #f5fbff; --card-back: #e0f7ff;
+    --shadow: 0 8px 32px rgba(0,170,238,0.15); --radius: 16px; --radius-sm: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
@@ -20,7 +20,7 @@
 
   /* HOME */
   #home { padding: 0 0 40px; }
-  .home-header { padding: 32px 20px 24px; background: linear-gradient(135deg, #0369a1 0%, #0284c7 60%, #38bdf8 100%); border-bottom: 1px solid var(--border); }
+  .home-header { padding: 32px 20px 24px; background: linear-gradient(135deg, #0096d6 0%, #00aaee 60%, #5dd8ff 100%); border-bottom: 1px solid var(--border); }
   .home-header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; color: #fff; }
   .home-header h1 span { color: #bae6fd; }
   .home-header p { color: #e0f2fe; margin-top: 6px; font-size: 14px; }
@@ -32,7 +32,7 @@
   .stat-chip.new-s .num { color: #0284c7; }
   .stat-chip.due-s .num { color: #ea580c; }
   .stat-chip.done-s .num { color: var(--green); }
-  .study-all-btn { display: block; margin: 0 20px 4px; background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border: none; border-radius: var(--radius); padding: 16px; font-size: 15px; font-weight: 700; cursor: pointer; width: calc(100% - 40px); transition: opacity 0.2s; }
+  .study-all-btn { display: block; margin: 0 20px 4px; background: linear-gradient(135deg, #0096d6, #00aaee); color: white; border: none; border-radius: var(--radius); padding: 16px; font-size: 15px; font-weight: 700; cursor: pointer; width: calc(100% - 40px); transition: opacity 0.2s; }
   .study-all-btn:active { opacity: 0.85; }
   .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px; }
   .cat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.15s; }
@@ -59,25 +59,25 @@
   .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s ease; }
   .queue-counts { display: flex; gap: 10px; padding: 0 16px 12px; }
   .q-chip { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-  .q-chip.new-c { background: rgba(2,132,199,0.1); color: var(--accent); }
+  .q-chip.new-c { background: rgba(0,170,238,0.12); color: var(--accent); }
   .q-chip.lrn-c { background: rgba(249,115,22,0.15); color: #ea580c; }
-  .q-chip.rev-c { background: rgba(2,132,199,0.12); color: var(--accent); }
+  .q-chip.rev-c { background: rgba(0,170,238,0.14); color: var(--accent); }
 
   .card-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 16px 16px; }
   .card-scene { width: 100%; max-width: 480px; perspective: 1000px; }
   .card-inner { position: relative; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); min-height: 340px; }
   .card-inner.flipped { transform: rotateY(180deg); }
   .card-face { position: absolute; top: 0; left: 0; right: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: var(--card-front); border: 1px solid var(--border); border-radius: 20px; padding: 24px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 340px; cursor: pointer; box-shadow: var(--shadow); }
-  .card-face.back { background: var(--card-back); transform: rotateY(180deg); border-color: #7dd3fc; cursor: default; }
+  .card-face.back { background: var(--card-back); transform: rotateY(180deg); border-color: #5dd8ff; cursor: default; }
   .card-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); margin-bottom: 12px; }
   .card-num { position: absolute; top: 14px; right: 16px; font-size: 11px; color: var(--text2); font-weight: 600; }
   .card-tap-hint { font-size: 13px; color: var(--text2); margin-top: 16px; }
   .front-audio-icon { font-size: 72px; margin: 8px 0 4px; animation: audioPulse 2s ease-in-out infinite; }
   @keyframes audioPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.1);opacity:0.8} }
 
-  .pronounce-btn { background: rgba(2,132,199,0.1); border: 1px solid rgba(2,132,199,0.3); color: var(--accent); border-radius: 30px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.15s; margin-top: 16px; }
-  .pronounce-btn:active { background: rgba(2,132,199,0.2); transform: scale(0.96); }
-  .pronounce-btn.speaking { background: rgba(2,132,199,0.15); animation: pulse 0.8s ease-in-out infinite; }
+  .pronounce-btn { background: rgba(2,132,199,0.1); border: 1px solid rgba(0,170,238,0.35); color: var(--accent); border-radius: 30px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.15s; margin-top: 16px; }
+  .pronounce-btn:active { background: rgba(0,170,238,0.22); transform: scale(0.96); }
+  .pronounce-btn.speaking { background: rgba(0,170,238,0.18); animation: pulse 0.8s ease-in-out infinite; }
   #pbtn-front { padding: 20px 48px; font-size: 22px; gap: 12px; margin-top: 24px; border-radius: 50px; border-width: 2px; width: 88%; justify-content: center; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 
@@ -85,12 +85,12 @@
   .step-dots { display: flex; gap: 6px; margin-bottom: 14px; }
   .step-dot { width: 8px; height: 8px; border-radius: 50%; background: #bae6fd; }
   .step-dot.active { background: var(--accent); }
-  .back-french { font-size: 36px; font-weight: 800; color: #0369a1; text-align: center; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .back-french { font-size: 36px; font-weight: 800; color: #0070aa; text-align: center; letter-spacing: -0.5px; margin-bottom: 4px; }
   .back-ipa { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
   .back-divider { width: 40px; height: 2px; background: #bae6fd; border-radius: 1px; margin: 0 auto 12px; }
-  .back-english { font-size: 20px; font-weight: 700; color: #0369a1; text-align: center; margin-bottom: 12px; }
+  .back-english { font-size: 20px; font-weight: 700; color: #0070aa; text-align: center; margin-bottom: 12px; }
   .back-example { font-size: 14px; line-height: 1.6; text-align: center; width: 100%; }
-  .back-ex-fr { color: #075985; font-style: italic; margin-bottom: 4px; }
+  .back-ex-fr { color: #005f8a; font-style: italic; margin-bottom: 4px; }
   .back-ex-en { color: var(--text2); font-size: 13px; }
 
   .flip-hint { text-align: center; padding: 4px 0 10px; font-size: 13px; color: var(--text2); }
