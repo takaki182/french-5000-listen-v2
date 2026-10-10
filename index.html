@@ -137,6 +137,10 @@
   <button class="study-all-btn" onclick="studyAll()">▶ Étudier toutes les cartes dues</button>
   <div class="section-title">Catégories (100 mots chacune)</div>
   <div class="cat-grid" id="cat-grid"></div>
+  <div class="section-title">データ復元</div>
+  <div style="padding:0 20px 8px">
+    <button class="study-all-btn" style="background:linear-gradient(135deg,#64748b,#94a3b8);font-size:13px;padding:13px" onclick="seedPastProgress()">⏮ 1〜2000を学習済みに設定（データ消失後の復元用）</button>
+  </div>
 </div>
 
 <!-- STUDY -->
@@ -242,6 +246,32 @@ function catStats(words) {
   var now=Date.now(),nw=0,due=0,done=0;
   words.forEach(function(w){var cs=getCS(w.id);if(cs.status==='new')nw++;else if(cs.due<=now)due++;else done++;});
   return {nw:nw,due:due,done:done};
+}
+
+function seedPastProgress() {
+  var count = VOCAB.filter(function(w){ return w.id <= 2000; }).length;
+  if (!confirm('1〜2000番の単語（' + count + '枚）を「学習済み・復習待ち」にします。\n\n今後30日間で少しずつ復習カードとして出てきます。\n\n現在の1〜2000のデータはリセットされます。続けますか？')) return;
+
+  var s = getState();
+  var now = Date.now();
+  var DAY = 86400000;
+  // spread 2000 cards over -5 to +30 days so they trickle in gradually
+  var words1to2000 = VOCAB.filter(function(w){ return w.id <= 2000; });
+  words1to2000.forEach(function(w, i) {
+    // distribute due dates: first 300 already overdue (-5~0 days), rest spread over next 30 days
+    var offset;
+    if (i < 300) {
+      offset = (i / 300) * 5 - 5; // -5 to 0 days (already due)
+    } else {
+      offset = ((i - 300) / (words1to2000.length - 300)) * 30; // 0 to 30 days
+    }
+    // add small random jitter ±0.5 day
+    offset += (Math.random() - 0.5);
+    s[w.id] = { interval: 7, ease: 2.5, due: now + offset * DAY, reps: 2, lapses: 0, status: 'review' };
+  });
+  setState(s);
+  alert('設定完了！1〜2000の' + count + '枚が復習キューに追加されました。');
+  renderHome();
 }
 
 function renderHome() {
